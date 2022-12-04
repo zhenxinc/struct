@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cassert>
+
+struct rational { // definite a new struct ("type") called "rational"
+  int n; // definite the 1st element of the struct: n (type integer) [n is the "numerator" of the "rational (number)"]
+  int d; // definite the 2nd element of the struct: d (type integer) [d is the "denomenator" of the "rational (number) → d != 0]
+}; // end of definition: the type has two elements in total: n and d (both are integers)
+
+rational add (rational a, rational b) { // definite a sub-function named "add", which returns a "rational"-type (newly defined type) value with two variables, a and b (both type "rational")
+  rational result; // define a new variable named "result" with type "rational"
+  result.n = a.n * b.d + a.d * b.n; // define the first element of "result" (simulate the fraction reduction process)
+  result.d = a.d * b.d; // define the second element of "result" (simulate the fraction reduction process)
+  return result; // return the "result" (type "rational")
+}
+
+int main () {
+  rational r; 
+  std::cout << "Rational number r:\n";
+  std::cout << " numerator = ";
+  std::cin >> r.n;
+  std::cout << " denominator = ";
+  std::cin >> r.d;
+  
+  rational s;
+  std::cout << "Rational number s:\n";
+  std::cout << " numerator = ";
+  std::cin >> s.n;
+  std::cout << " denominator = ";
+  std::cin >> s.d;
+  
+  const rational t = add (r, s);
+  std::cout << "Sum is " << t.n << "/" << t.d << ".\n";
+  return 0;
+}
+
+//  第二种写法，不用定义add（r,s） std::cout << "Sum is " << add(r,s).n<<"/"<<add(r,s).d<< ".\n"；
+// 不能定义为 add=add(r,s) 会报错
