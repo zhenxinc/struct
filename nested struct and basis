@@ -1,0 +1,54 @@
+值得学习的地方：第29.49.50行重要！我们在输出关于client的信息时，有一个关于PHONE的nested struct。
+此处需要用function，召唤20行printinfo函数（自变量为buyers.choicemade, 由struct client里client选择的手机而定，而不是直接choice1 或choice2.
+
+#include <iostream>
+#include <vector>
+# include <cassert>
+
+struct PHONE {
+  std::string name;
+  float price;
+  int storage;
+};
+
+struct client {
+  std::string name;
+  int age;
+  PHONE choicemade;
+};
+
+void printinfo (PHONE smartphone) {
+  std::cout<< smartphone.name<<std::endl;
+  std::cout<< smartphone.price<<std::endl;
+  std::cout<< smartphone.storage<<std::endl;
+}
+
+void printinfo2 (client buyers) {
+  std::cout<< buyers.name<<std::endl;
+  std::cout<< buyers.age<<std::endl;
+  printinfo (buyers.choicemade);
+}
+
+int main() {
+  PHONE choice1;
+  choice1.name = "xiaomi";
+  choice1.price =300.99;
+  choice1.storage = 128;
+  
+  PHONE choice2;
+  choice2.name = "apple";
+  choice2.price = 999.9;
+  choice2.storage = 128;
+  
+ // printinfo (choice1);
+ // printinfo (choice2);
+  
+  client client1;
+  client1.name = "jack";
+  client1.age = 20;
+  client1.choicemade = choice1;
+  
+  printinfo2 (client1);
+}
+
+
